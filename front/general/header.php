@@ -1,139 +1,137 @@
-<style>
-    /* Estilos Generales */
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        /* Agregamos contenido de ejemplo para poder hacer scroll */
-        height: 200vh;
-        background-color: #f0f0f0;
-    }
 
-    /* --- Estilos del Header --- */
-    .header {
-        position: fixed; /* Lo deja fijo en la parte superior */
-        top: 0;
-        left: 0;
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 15px 30px;
-        z-index: 1000; /* Asegura que esté por encima de otro contenido */
-        transition: background-color 0.4s ease; /* Transición suave */
-        box-sizing: border-box; /* Asegura que el padding no afecte el ancho */
-    }
-
-    /* Estado transparente (inicial) */
-    .header {
-        background-color: transparent;
-    }
-
-    /* Estado al hacer scroll */
-    .header.scrolled {
-        background-color: #ffffff; /* Fondo blanco sólido */
-        border-bottom: 1px solid #e0e0e0;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-
-    .header .logo a {
-        font-size: 24px;
-        font-weight: bold;
-        color: #333; /* Color oscuro para que sea visible al scrollear */
-        text-decoration: none;
-    }
-
-    /* --- Navegación Principal --- */
-    .main-nav {
-        display: flex;
-    }
-
-    .main-nav ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-    }
-
-    .main-nav ul li {
-        margin-left: 30px;
-    }
-
-    .main-nav ul li a {
-        text-decoration: none;
-        color: #333;
-        font-weight: bold;
-        font-size: 14px;
-    }
-
-    .donate-button {
-        background-color: rgb(148,192,34);
-        color: #fff;
-        padding: 10px 20px;
-        text-decoration: none;
-        border-radius: 5px;
-        font-weight: bold;
-        font-size: 14px;
-        transition: background-color 0.3s ease;
-    }
-    .donate-button:hover{
-        background-color: rgb(148,192,34);
-    }
-
-    /* --- Menú de Hamburguesa (Móvil) --- */
-    .hamburger-menu {
-        display: none; /* Oculto por defecto en escritorio */
-        cursor: pointer;
-        font-size: 28px;
-    }
-
-    /* --- Media Query para Responsividad --- */
-    @media (max-width: 768px) {
-        .main-nav, .donate-button {
-            display: none; /* Oculta el menú y el botón en móvil */
-        }
-
-        .hamburger-menu {
-            display: block; /* Muestra el icono de hamburguesa */
-        }
-
-        /* Estilos para el menú desplegable */
-        .main-nav.active {
-            display: flex;
-            flex-direction: column;
-            position: absolute;
-            top: 70px; /* Altura del header */
+    <style>
+        /* --- Estilos del Header --- */
+        .header {
+            position: fixed; /* Mantiene el header fijo en la parte superior */
+            top: 0;
             left: 0;
             width: 100%;
-            background-color: #fff;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%; /* Uso de porcentaje para mejor adaptabilidad */
+            z-index: 1000;
+            background-color: transparent; /* Estado inicial transparente */
+            transition: background-color 0.4s ease, padding 0.4s ease; /* Transición suave */
+            box-sizing: border-box;
         }
 
-        .main-nav.active ul {
-            flex-direction: column;
-            width: 100%;
+        /* Estado del header al hacer scroll */
+        .header.scrolled {
+            background-color: #ffffff;
+            padding: 10px 5%; /* Un poco más compacto al scrollear */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        .main-nav.active ul li {
-            text-align: center;
+        /* --- Logo --- */
+        .header .logo img {
+            height: 50px; /* Ajusta la altura de tu logo */
+            width: auto; /* Mantiene la proporción */
+            transition: height 0.4s ease; /* Transición suave para el tamaño */
+        }
+
+        .header.scrolled .logo img {
+            height: 40px; /* Logo ligeramente más pequeño al scrollear */
+        }
+
+        /* --- Navegación Principal (Escritorio) --- */
+        .main-nav {
+            display: flex;
+        }
+
+        .main-nav ul {
+            list-style: none;
             margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
         }
 
-        .main-nav.active ul li a {
-            padding: 15px;
-            display: block;
-            width: 100%;
-            border-bottom: 1px solid #f0f0f0;
+        .main-nav ul li {
+            margin-left: 35px;
         }
-    }
-</style>
+
+        .main-nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        /* --- Botón Donar --- */
+        .donate-button {
+            background-color: rgb(148,192,34);
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 14px;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease;
+        }
+        .donate-button:hover{
+            background-color: rgb(148,192,34);
+        }
+
+        /* --- Menú de Hamburguesa (Móvil) --- */
+        .hamburger-menu {
+            display: none; /* Oculto en escritorio */
+            cursor: pointer;
+            font-size: 30px;
+            color: #333;
+        }
+
+        /* --- Estilos Responsivos --- */
+        @media (max-width: 992px) { /* Un punto de quiebre más común */
+            .main-nav {
+                display: none; /* Oculta la navegación principal */
+                flex-direction: column;
+                position: absolute;
+                top: 100%; /* Justo debajo del header */
+                left: 0;
+                width: 100%;
+                background-color: #fff;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            }
+
+            /* Muestra el menú cuando está activo */
+            .main-nav.active {
+                display: flex;
+            }
+
+            .main-nav ul {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .main-nav ul li {
+                text-align: center;
+                margin: 0;
+                width: 100%;
+            }
+
+            .main-nav ul li a {
+                padding: 18px;
+                display: block;
+                border-bottom: 1px solid #f0f0f0;
+            }
+
+            .donate-button {
+                display: none; /* También puedes ocultar el botón si quieres */
+            }
+
+            .hamburger-menu {
+                display: block; /* Muestra el icono de hamburguesa */
+            }
+        }
+    </style>
 
 
-
-<header class="header">
+<header class="header" id="header">
     <div class="logo">
-        <a href="index.php"><img width="50%" style="margin-left: 60px;" src="front/multimedia/logo.png"
-                                 class="img-fluid" alt="Responsive image"></a>
+        <a href="index.php"><img src="front/multimedia/logo.png" alt="Logo Celamex"></a>
     </div>
 
     <nav class="main-nav" id="mainNav">
@@ -151,30 +149,25 @@
         &#9776; </div>
 </header>
 
-
-
 <script>
-    // --- Lógica para cambiar el header al hacer scroll ---
-    const header = document.querySelector('.header');
+    document.addEventListener('DOMContentLoaded', function () {
+        const header = document.getElementById('header');
+        const hamburgerMenu = document.getElementById('hamburgerMenu');
+        const mainNav = document.getElementById('mainNav');
 
-    window.addEventListener('scroll', () => {
-        // Si el scroll vertical es mayor a 50px, añade la clase 'scrolled'
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            // Si no, la quita
-            header.classList.remove('scrolled');
-        }
-    });
+        // --- Lógica para cambiar el header al hacer scroll ---
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
 
-    // --- Lógica para el menú de hamburguesa ---
-    const hamburgerMenu = document.getElementById('hamburgerMenu');
-    const mainNav = document.getElementById('mainNav');
-
-    hamburgerMenu.addEventListener('click', () => {
-        // Alterna la clase 'active' en la navegación para mostrar/ocultar
-        mainNav.classList.toggle('active');
+        // --- Lógica para el menú de hamburguesa ---
+        hamburgerMenu.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+        });
     });
 </script>
-
 
